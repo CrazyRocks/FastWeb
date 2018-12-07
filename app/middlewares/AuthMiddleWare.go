@@ -1,12 +1,21 @@
 package middlewares
 
-import "github.com/kataras/iris"
+import (
+	"../core"
+	"github.com/kataras/iris"
+)
 
-func before(ctx iris.Context){
+type AuthMiddleware struct {
+	*core.BaseMiddleware
+}
+
+func (mid *AuthMiddleware) Before(ctx iris.Context) {
+	mid.BaseMiddleware.Before(ctx)
 	println("before AuthMiddleWare")
 	ctx.Next()
 }
 
-func after(ctx iris.Context){
+func (mid *AuthMiddleware) After(ctx iris.Context) {
+	mid.BaseMiddleware.After(ctx)
 	println("after AuthMiddleWare")
 }

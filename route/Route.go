@@ -14,8 +14,18 @@ func New() *Route {
 }
 
 func (route *Route) Init(app iris.Application) *Route {
-	app.Get("/", controller.NewIndex().Index)
+	app.Get("/", before, controller.NewIndex().Index, after)
 	app.Get("/home", controller.NewIndex().Home)
 	route.app = app
 	return route
+}
+
+func before(ctx iris.Context) {
+	ctx.Writef("before action")
+	ctx.Next()
+}
+
+func after(ctx iris.Context) {
+	ctx.Writef("after action")
+	ctx.Next()
 }
