@@ -10,5 +10,5 @@ type IndexController struct {
 }
 
 func (ctrl *IndexController) Home(ctx iris.Context) {
-	ctx.Writef("This is Home Page")
+	ctx.View("home.html")
 }
