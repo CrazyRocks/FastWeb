@@ -6,7 +6,7 @@ import (
 )
 
 type IndexController struct {
-	*core.BaseController
+	core.BaseController
 }
 
 func (ctrl *IndexController) Home(ctx iris.Context) {

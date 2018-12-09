@@ -5,10 +5,11 @@ import (
 )
 
 type BaseController struct {
-	ModuleName  string
-	Middlewares []interface{}
+	ModuleName string
+	ControllerMiddleware
 }
 
 func (ctrl *BaseController) Index(ctx iris.Context) {
-	ctx.JSON([]string{"test", "test2"})
+	ctx.JSON([]string{"wendao", "17173"})
+	ctx.Next()
 }
