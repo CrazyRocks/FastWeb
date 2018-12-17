@@ -36,9 +36,14 @@ func GetInstance() *Route {
 */
 func (route *Route) Boot(app iris.Application) *Route {
 	indexController := controller.NewIndex()
-	indexController.RegisterMiddleware([]string{"auth"})
+	indexController.RegisterMiddleware("auth")
 	app.Get("/", indexController.Before, indexController.Index, indexController.After)
 	app.Get("/home", indexController.Home)
+
+	userController := controller.NewUser()
+	userController.RegisterMiddleware("auth", "db")
+	app.Post("/users", userController.Before, userController.Add, userController.After)
+
 	route.app = app
 	return route
 }

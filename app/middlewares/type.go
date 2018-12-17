@@ -10,6 +10,7 @@ var isBooted bool
 func Boot(){
 	middlewareMap = make(map[string]core.IMiddleware)
 	middlewareMap["auth"] = &AuthMiddleware{}
+	middlewareMap["db"] = &DbMiddleware{}
 	isBooted = true
 }
 

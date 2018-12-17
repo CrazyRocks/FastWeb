@@ -33,7 +33,7 @@ func (mid *ControllerMiddleware) After(ctx iris.Context) {
 	ctx.Next()
 }
 
-func (mid *ControllerMiddleware) RegisterMiddleware(midNames []string) {
+func (mid *ControllerMiddleware) RegisterMiddleware(midNames ...string) {
 	if len(midNames) == 0 {
 		return
 	}

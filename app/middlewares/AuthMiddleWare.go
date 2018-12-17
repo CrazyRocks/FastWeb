@@ -17,4 +17,5 @@ func (mid *AuthMiddleware) Before(ctx iris.Context) {
 func (mid *AuthMiddleware) After(ctx iris.Context) {
 	mid.BaseMiddleware.After(ctx)
 	println("after AuthMiddleWare")
+	ctx.Next()
 }
