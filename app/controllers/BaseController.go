@@ -1,4 +1,4 @@
-package core
+package controller
 
 import (
 	"github.com/kataras/iris"

@@ -1,12 +1,11 @@
 package middlewares
 
 import (
-	"../core"
 	"github.com/kataras/iris"
 )
 
 type AuthMiddleware struct {
-	*core.BaseMiddleware
+	BaseMiddleware
 }
 
 func (mid *AuthMiddleware) Before(ctx iris.Context) {

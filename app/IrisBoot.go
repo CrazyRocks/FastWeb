@@ -2,13 +2,11 @@ package app
 
 import (
 	"../route"
-	"./middlewares"
 	"github.com/kataras/iris"
 	"sync"
 )
 
 type IrisBoot struct {
-	Middlewares map[string]interface{}
 	App         iris.Application
 	isBooted    bool
 }
@@ -32,13 +30,7 @@ func (irisBoot *IrisBoot) Boot(app *iris.Application) {
 		return
 	}
 	irisBoot.App = *app
-	irisBoot.registerMiddlewares()
 	irisBoot.registerRoutes()
-}
-
-func (irisBoot *IrisBoot) registerMiddlewares() {
-	irisBoot.Middlewares = make(map[string]interface{})
-	irisBoot.Middlewares["auth"] = &middlewares.AuthMiddleware{}
 }
 
 func (irisBoot *IrisBoot) registerRoutes() {

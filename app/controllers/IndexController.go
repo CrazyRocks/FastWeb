@@ -1,12 +1,11 @@
 package controller
 
 import (
-	"../core"
 	"github.com/kataras/iris"
 )
 
 type IndexController struct {
-	core.BaseController
+	BaseController
 }
 
 func (ctrl *IndexController) Home(ctx iris.Context) {

@@ -1,6 +1,8 @@
-package core
+package controller
 
 import (
+	"../core"
+	"../middlewares"
 	"github.com/kataras/iris"
 )
 
@@ -10,7 +12,7 @@ import (
 type ControllerMiddleware struct {
 	Name        string
 	Description string
-	Middlewares map[string]IMiddleware
+	Middlewares map[string]core.IMiddleware
 }
 
 func (mid *ControllerMiddleware) Before(ctx iris.Context) {
@@ -31,5 +33,14 @@ func (mid *ControllerMiddleware) After(ctx iris.Context) {
 	ctx.Next()
 }
 
-func (mid *ControllerMiddleware) RegisterMiddlewares(midNames []string) {
+func (mid *ControllerMiddleware) RegisterMiddleware(midNames []string) {
+	if len(midNames) == 0 {
+		return
+	}
+	if mid.Middlewares == nil {
+		mid.Middlewares = make(map[string]core.IMiddleware)
+	}
+	for _, midName := range midNames {
+		mid.Middlewares[midName] = middlewares.RegisterMiddlewares()[midName]
+	}
 }
