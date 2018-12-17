@@ -8,8 +8,6 @@ import (
 
 type Route struct {
 	app         iris.Application
-	Middlewares map[string]interface{}
-	Events      map[string]interface{}
 }
 
 var router *Route
